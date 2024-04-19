@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Geolocation } from "@capacitor/geolocation";
+import Map from "react-map-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 function App() {
   const [coords, setCoords] = useState({});
@@ -31,6 +33,16 @@ function App() {
       <h2>Latitude : {coords.latitude}</h2>
       <h2>Longitude : {coords.longitude}</h2>
       <h2>Permision : {permision}</h2>
+      <Map
+        mapboxAccessToken="<Mapbox access token>"
+        initialViewState={{
+          longitude: coords.longitude,
+          latitude: coords.latitude,
+          zoom: 14,
+        }}
+        style={{ width: 600, height: 400 }}
+        mapStyle="mapbox://styles/mapbox/streets-v9"
+      />
     </div>
   );
 }
